@@ -23,3 +23,20 @@ Tytuł: Stwórz specyfikację projektu
 
 **Dodatkowe informacje:**
 * ...
+
+## Model kolaboracji
+
+* Zadania są opisywane przy pomiocy **GitHub Issues** w sposób opisany powyżej
+* Implementacja zadań przeprowadzana jest tak, że każde zadanie implementowane jest na oddzielnym branchu
+* Branche są nazywane tak jak zadanie które realizują
+* Po ukończeniu implementacji zadania na danym branchu tworzony jest **Pull Request** do brancha **master**
+* **PR** jest linkowany do **Issue** które realizuje (dzięki temu zmergowanie **PR** będzie skutkowało automatycznym zamknięciem Issue)
+* Po pozytywnym rozpatrzeniu **PR** branch jest mergowany do brancha **master** i usuwany
+
+## Dodatkowe informacje
+
+* Lista uczestników znajduje się na prywatnym kanale Discord w celu ograniczenia dostępu do niej
+
+### Opiekun repozytorium
+
+* [Tomasz Zdeb](https://github.com/Tomasz-Zdeb)
