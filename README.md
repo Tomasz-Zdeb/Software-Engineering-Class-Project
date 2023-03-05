@@ -8,7 +8,7 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
 
 ## Definiowanie zadań
 
-* W celu definiowania zadań korzystamy z funkcjonalności: **Issues** oferowanej przez **GitHub** na poziomie repozytorium
+* W celu definiowania zadań korzystamy z funkcjonalności: **Issues** oferowanej przez **GitHub** na poziomie repozytorium, stanowi on **Backlog** projektu
 * Definicja zadania powinna składać się z:
   * krótkiego opisowego tytułu (wskazany tryb rozkazujący), np. "*Stwórz specyfikację projektu*"
   * **AC** (Acceptance Criteria), czyli punktów opisujących w wysokopoziomowy sposób stan po ukończeniu zadania, np.
