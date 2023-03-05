@@ -17,7 +17,7 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
 
 Tytuł: Stwórz specyfikację projektu
 
-**AC:**
+**Kryteria Akceptacji Projektu:**
 * *Specyfikacja projektu jest utworzona*
 * *Specyfikacja projektu przedstawiona jest w postaci listy funkcjonalności*
 
