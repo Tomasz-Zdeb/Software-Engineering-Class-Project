@@ -1,2 +1,7 @@
-# Software-Engineering-Class-Project
-Activity Project for Software Engineering class in 2022/2023 summer semester at Cracow Uniwersity Of Technology part-time Computer Science studies 
+# Projekt zaliczeniowy
+
+W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** jesteśmy zobowiązani grupowo wykonać projekt. Kryteria nie są z góry narzucone.
+
+## Specyfikacja
+
+* (uzupełnić)
