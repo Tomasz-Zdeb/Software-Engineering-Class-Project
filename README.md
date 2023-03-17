@@ -2,9 +2,46 @@
 
 W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** jesteśmy zobowiązani grupowo wykonać projekt. Kryteria nie są z góry narzucone.
 
+# Produkt: Aplikacja Webowa do Przechowywania Notatek
+
 ## Specyfikacja
 
-* (uzupełnić)
+###  Architektura
+
+-   Komponent frontendowy (Web GUI)
+-   Komponent backendowy (API)
+-   Baza danych
+
+### Funkcjonalności
+
+-   Rejestracja użytkowników
+-   Logowanie użytkowników
+-   Tworzenie notatek
+-   Przechowywanie notatek
+-   Przeglądanie notatek
+-   Edycja notatek
+-   Wyszukiwanie po zadanym parametrze
+-   Tagowanie notatek
+-   Filtrowanie po tagach
+-   Usuwanie do kosza
+-   Udostępnianie notatek między użytkownikami
+
+### Wymagania
+
+-   Stylizacja tekstu w trakcie edycji, stylami: bold, italic, underline
+-   Stylizacja nagłówków w trzech poziomach
+-   Stylizacja zawartości w listy: numerowane i nienumerowane
+-   Utrzymywanie sesji przez określony w konfiguracji timeout
+
+### Dodatkowe funkcjonalności (nie planowane do implementacji)
+
+-   Ograniczenie praw użytkowników którym udostępniono notatkę
+-   Automatyczne kopie zapasowe
+-   Eksport notatek
+
+----------
+
+*Ze względu na sposób organizacji pracy, niniejsza specyfikacja może ewoluować w trakcie pracy nad projektem*
 
 ## Definiowanie zadań
 
