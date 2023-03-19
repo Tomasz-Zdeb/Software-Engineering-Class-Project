@@ -37,9 +37,7 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
 -   Automatyczne kopie zapasowe
 -   Eksport notatek
 
-----------
-
-*Ze względu na sposób organizacji pracy, niniejsza specyfikacja może ewoluować w trakcie pracy nad projektem*
+> Ze względu na sposób organizacji pracy, niniejsza specyfikacja może ewoluować w trakcie pracy nad projektem
 
 ## Model kolaboracji
 
