@@ -43,32 +43,32 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
 
 *Ze względu na sposób organizacji pracy, niniejsza specyfikacja może ewoluować w trakcie pracy nad projektem*
 
-## Definiowanie zadań
+## Model kolaboracji
+
+### Definiowanie zadań
 
 * W celu definiowania zadań korzystamy z funkcjonalności: **Issues** oferowanej przez **GitHub** na poziomie repozytorium, stanowi ona **Backlog** projektu
 * Definicja zadania powinna składać się z:
   * Krótkiego opisowego tytułu (wskazany tryb rozkazujący), np. "*Stwórz specyfikację projektu*"
   * **Kryteriów akceptacji zadania**, czyli punktów opisujących w wysokopoziomowy sposób stan po ukończeniu zadania, np.
    
-### Przykład:
+#### Przykład:
 
 Tytuł: Stwórz specyfikację projektu
 
-**Kryteria Akceptacji Projektu:**
+**Kryteria Akceptacji Zadania:**
 * *Specyfikacja projektu jest utworzona*
 * *Specyfikacja projektu przedstawiona jest w postaci listy funkcjonalności*
 
 **Dodatkowe informacje:**
 * ...
 
-## Model kolaboracji
-
-* Zadania są opisywane przy pomiocy **GitHub Issues** w sposób opisany powyżej
-* Implementacja zadań przeprowadzana jest tak, że każde zadanie implementowane jest na oddzielnym branchu
-* Branche są nazywane tak jak zadanie które realizują
-* Po ukończeniu implementacji zadania na danym branchu tworzony jest **Pull Request** do brancha **master**
-* **PR** jest linkowany do **Issue** które realizuje (dzięki temu zmergowanie **PR** będzie skutkowało automatycznym zamknięciem Issue)
-* Po pozytywnym rozpatrzeniu **PR** branch jest mergowany do brancha **master** i usuwany
+### Branching
+* Aktualny stan projektu reprezentowany jest przez branch: **master**
+* Zadania (Issues) implementuje się na dedykowanych branchach o nazwach odpowiadających nazwie zadania, które po zakończeniu pracy nad zadaniem merguje się do brancha master poprzez stworzenie Pull Requesta
+* Pull Requesty pozostawia się z domyślną nazwę
+* Opis w Pull Requeście jest tworzony jedynie gdy stopień złożoności zmian jest bardzo wysoki
+* Po zmergowaniu Pull Requesta, branch jest usuwany
 
 ## Dodatkowe informacje
 
