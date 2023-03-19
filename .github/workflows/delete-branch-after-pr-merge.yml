@@ -1,0 +1,20 @@
+name: Delete Branch on PR close
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Delete branch
+        run: |
+          git remote set-branches --add origin ${{ github.head_ref }}
+          git fetch origin
+          git branch -D ${{ github.head_ref }}
+          git push origin --delete ${{ github.head_ref }}
