@@ -1,0 +1,35 @@
+name: Delete Branch on Pull Request Close
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if pull request was merged
+        id: check_merged
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            const merged = pr.merged;
+            return { merged };
+
+      - name: Delete branch if pull request was merged
+        if: ${{ steps.check_merged.outputs.merged == true }}
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const ref = context.payload.pull_request.head.ref;
+            const owner = context.payload.repository.owner.login;
+            const repo = context.payload.repository.name;
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+            return octokit.git.deleteRef({
+              owner,
+              repo,
+              ref: `heads/${ref}`
+            });
