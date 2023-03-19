@@ -48,8 +48,9 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
   * Krótkiego opisowego tytułu (wskazany tryb rozkazujący), np. "*Stwórz specyfikację projektu*"
   * **Kryteriów akceptacji zadania**, czyli punktów opisujących w wysokopoziomowy sposób stan po ukończeniu zadania, np.
    
-#### Przykład:
+  #### Przykład:
 
+```
 Tytuł: Stwórz specyfikację projektu
 
 **Kryteria Akceptacji Zadania:**
@@ -58,6 +59,9 @@ Tytuł: Stwórz specyfikację projektu
 
 **Dodatkowe informacje:**
 * ...
+```
+
+ * Issues oznaczamy **labelem** klasyfikującym jego: `{kategorię,priorytet}`
 
 ### Branching
 * Aktualny stan projektu reprezentowany jest przez branch: **master**
@@ -65,6 +69,7 @@ Tytuł: Stwórz specyfikację projektu
 * Pull Requesty pozostawia się z domyślną nazwę
 * Opis w Pull Requeście jest tworzony jedynie gdy stopień złożoności zmian jest bardzo wysoki
 * Po zmergowaniu Pull Requesta, branch jest usuwany
+
 
 ## Dodatkowe informacje
 
