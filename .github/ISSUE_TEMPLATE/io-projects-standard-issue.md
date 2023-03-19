@@ -2,7 +2,7 @@
 name: IO Projects standard issue
 about: Domyślny format definicji zadania w Backlogu projektu (GitHub Issue)
 title: Opis w trybie rozkazującym np. Stwórz endpoint note
-labels: ''
+labels: 'USTAW LABEL!'
 assignees: ''
 
 ---
