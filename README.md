@@ -39,6 +39,9 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
 
 > Ze względu na sposób organizacji pracy, niniejsza specyfikacja może ewoluować w trakcie pracy nad projektem
 
+### Diagram związków encji
+![Entity-Relationship-Diagram](https://github.com/Tomasz-Zdeb/Software-Engineering-Class-Project/blob/master/DB/ERD-diagram.drawio.png)
+
 ## Format komunikacji 
 Format  JSON  (JavaScript Object Notation) został wspólnie  wybrany  przez  zespoły  frontendowy  i  API  jako  podstawowy  sposób  komunikacji  między  nimi.
 
