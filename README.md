@@ -39,6 +39,34 @@ W ramach zaliczenia laboratorium z przedmiotu: **Inżynieria Oprogramowania** je
 
 > Ze względu na sposób organizacji pracy, niniejsza specyfikacja może ewoluować w trakcie pracy nad projektem
 
+## Format komunikacji 
+Format  JSON  (JavaScript Object Notation) został wspólnie  wybrany  przez  zespoły  frontendowy  i  API  jako  podstawowy  sposób  komunikacji  między  nimi.
+
+Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają, że  JSON  jest  odpowiednim  rozwiązaniem  dla  naszego  projektu: 
+1. **Uniwersalność**: JSON  jest  obsługiwany  przez  większość języków  programowania  i  frameworków, co  ułatwia  integrację między  różnymi  technologiami  używanymi  przez  zespoły  frontendowy  i  API. 
+2.  **Czytelność**: JSON  jest łatwy  do  czytania  zarówno  dla  ludzi, jak  i  maszyn. Jego  struktura  opiera  się na  parze  klucz-wartość, co  sprawia, że  dane  są proste  do  zrozumienia  i  interpretacji. 
+3.  **Lekkość**: JSON  jest  lżejszy  od  innych  formatów  wymiany  danych, takich  jak  XML, co  przekłada  się na  szybsze  przesyłanie  danych  między  klientem  a  serwerem, a  także  na  mniejsze  obciążenie  sieci. 
+4. **Elastyczność**: JSON  pozwala  na łatwe  manipulowanie  danymi, a  także  na  ich  konwersję na  inne  formaty. Dzięki  temu  można łatwo  przekształcić dane  otrzymane  z  API  do  postaci, która  jest  odpowiednia  dla  konkretnego  zadania.
+
+Przykład żądania JSON
+
+    { 
+	    "email": "example@email.com", 
+	    "password": "example_password" 
+	}
+
+Przykład odpowiedzi JSON:
+
+    {  
+	    "status":  "success",  
+	    "data":  
+		    {  
+			    "user_id":  123,  
+			    "name":  "John Doe",  
+			    "token":  "abcd1234"  
+		    }  
+    }
+
 ## Model kolaboracji
 
 ### Definiowanie zadań
