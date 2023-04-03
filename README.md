@@ -101,6 +101,18 @@ Tytuł: Stwórz specyfikację projektu
 * Opis w Pull Requeście jest tworzony jedynie gdy stopień złożoności zmian jest bardzo wysoki
 * Po zmergowaniu Pull Requesta, branch jest usuwany
 
+### _GitHub Actions_
+#### ```delete-branch-on-merge.yml```
+- Opis:
+_Action_ ```delete-merged-branch``` usuwa gałąź połączoną z danym _Pull Request'em_, jeśli _PR_ został połączony z gałęzią docelową. Dzięki temu akcja ta pozwala na utrzymanie repozytorium w czystości poprzez automatyczne usuwanie już niepotrzebnych gałęzi. _Action_ uruchamia się w momencie zamknięcia _Pull Request'a_ oznaczonego jako ```closed```. Następnie wykorzystuje ```SvanBoxel/delete-merged-branch```, aby usunąć gałąź, która była źródłem _Pull Requesta_. Akcja ta nie wymaga dodatkowych zależności i opiera się na standardowych _GitHub Actions_.
+- Zależności:
+  - _GITHUB_TOKEN_:
+  Aby móc wykonać usuwanie gałęzi, _Action_ wymaga dostępu do ```secrets.GITHUB_TOKEN```, który jest automatycznie tworzony przez GitHub i umożliwia wykonanie operacji na repozytorium za pomocą API GitHuba. Ważne jest, aby upewnić się, że w ustawieniach repozytorium na GitHubie, w sekcji "_Secrets_", zostało dodane GITHUB_TOKEN z odpowiednimi uprawnieniami do usuwania gałęzi. Aby uzyskać więcej informacji na temat GITHUB_TOKEN i jak go skonfigurować, można przejrzeć dokumentację GitHuba: https://docs.github.com/en/actions/reference/authentication-in-a-workflow.
+  -	_SvanBoxel_:
+  ```SvanBoxel/delete-merged-branch``` to gotowy do użycia _Action_, który usuwa gałęzie (_branche_) z repozytorium po ich scaleniu (_merge_) z innymi gałęziami, najczęściej z główną gałęzią repozytorium. _Action_ ten działa następująco: **kiedy następuje zdarzenie typu pull_request o typie closed, _Action_ pobiera informacje o zamkniętym _Pull Request'cie_ i sprawdza, czy został on scalony**. Jeśli tak, _Action_ pobiera informacje o gałęzi, która została scalona z gałęzią główną, i usuwa ją z repozytorium. Link do kodu źródłowego ```SvanBoxel/delete-merged-branch```: https://github.com/SvanBoxel/delete-merged-branch.
+
+
+
 
 ## Dodatkowe informacje
 
