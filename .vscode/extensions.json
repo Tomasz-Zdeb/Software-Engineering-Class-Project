@@ -3,7 +3,8 @@
       "DavidAnson.vscode-markdownlint",
       "eamodio.gitlens",
       "vscode-icons-team.vscode-icons",
-      "esbenp.prettier-vscode"
+      "esbenp.prettier-vscode",
+      "Himel.react-bootstrap4"
     ]
   }
   
