@@ -21,3 +21,17 @@ Aby wykonać wszystkie testy należy skorzystać z polecenia znajdując się w d
 ```sh
 npm test
 ```
+
+## Framework CSS - Bootstrap
+
+Bootstrap został dodany poprzez wykonanie polecenia:
+
+```sh
+npm install bootstrap react-bootstrap
+```
+
+oraz zaimportowanie zainstalowanego modułu w pliku `index.js`
+
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
