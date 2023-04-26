@@ -78,21 +78,8 @@ Przykład odpowiedzi JSON:
 * Definicja zadania powinna składać się z:
   * Krótkiego opisowego tytułu (wskazany tryb rozkazujący), np. "*Stwórz specyfikację projektu*"
   * **Kryteriów akceptacji zadania**, czyli punktów opisujących w wysokopoziomowy sposób stan po ukończeniu zadania, np.
-   
-  #### Przykład:
-
-```
-Tytuł: Stwórz specyfikację projektu
-
-**Kryteria Akceptacji Zadania:**
-* *Specyfikacja projektu jest utworzona*
-* *Specyfikacja projektu przedstawiona jest w postaci listy funkcjonalności*
-
-**Dodatkowe informacje:**
-* ...
-```
-
- * Issues oznaczamy **labelem** klasyfikującym jego: `{kategorię,priorytet}`
+* W celu utworzenia typowego Issue wskazane jest skorzystanie z gotowego szablonu dostępnego w repozytorium
+* Issues oznaczane są **labelem** klasyfikującym jego: `{kategorię,priorytet}`
 
 ### Branching
 * Aktualny stan projektu reprezentowany jest przez branch: **master**
