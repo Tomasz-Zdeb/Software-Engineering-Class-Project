@@ -88,6 +88,11 @@ Przykład odpowiedzi JSON:
 * Opis w Pull Requeście jest tworzony jedynie gdy stopień złożoności zmian jest bardzo wysoki
 * Po zmergowaniu Pull Requesta, branch jest usuwany
 
+### Techniki Programistyczne
+
+* Pair programming
+* Group programming
+
 ### _GitHub Actions_
 #### ```delete-branch-on-merge.yml```
 - Opis:
