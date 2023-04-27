@@ -79,14 +79,18 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 
 ## Model kolaboracji
 
-### Definiowanie zadań
+### Definiowanie zadań : **Backlog**
 
-- W celu definiowania zadań korzystamy z funkcjonalności: **Issues** oferowanej przez **GitHub** na poziomie repozytorium, stanowi ona **Backlog** projektu
-- Definicja zadania powinna składać się z:
-  - Krótkiego opisowego tytułu (wskazany tryb rozkazujący), np. "*Stwórz specyfikację projektu*"
-  - **Kryteriów akceptacji zadania**, czyli punktów opisujących w wysokopoziomowy sposób stan po ukończeniu zadania, np.
-- W celu utworzenia typowego Issue wskazane jest skorzystanie z gotowego szablonu dostępnego w repozytorium
-- Issues oznaczane są **labelem** klasyfikującym jego: `{kategorię,priorytet}`
+- W celu definiowania zadań korzystamy z funkcjonalności **GitHub Issues** na poziomie repozytorium stanowiącej **Backlog** projektu
+- Definicja zadania składa się z:
+  - **Tytułu** będącego krótkim opisem w trybie rozkazującym, np. "*Stwórz specyfikację projektu*"
+  - **Kryteriów akceptacji zadania**, czyli wysokopoziomowych stwierdzeń opisujących stan po realizacji zadania. Kryterium akceptacji powinno być zdefiniowane tak aby możliwa była boolowska walidacja stanu jego realizacji `[T/F]`
+- W celu utworzenia Issue wskazane jest skorzystanie z gotowego szablonu dostępnego w repozytorium
+- Issues oznaczane są **labelami** klasyfikującymi:
+  - kategorię techniczną
+  - priorytet
+  - czas-życia
+  - dodatkowe atrybuty
 
 ### Branching
 
