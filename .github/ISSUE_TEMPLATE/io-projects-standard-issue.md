@@ -9,12 +9,12 @@ assignees: ''
 
 ## Wymagania wstępne (opcjonalne)
 
-- [  ] [...]
+- [ ] [...]
 
 ## Kryteria Akceptacji
 
-- [  ] Wysokopoziomowy opis efektu końcowego, który można walidować jako: Prawda albo Fałsz
-- [  ] Np. endpoint `/note` został utworzony
+- [ ] Wysokopoziomowy opis efektu końcowego, który można walidować jako: Prawda albo Fałsz
+- [ ] Np. endpoint `/note` został utworzony
 
 ## Informacje (opcjonalne)
 
