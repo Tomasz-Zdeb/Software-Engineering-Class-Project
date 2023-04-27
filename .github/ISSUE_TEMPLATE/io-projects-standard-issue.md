@@ -13,8 +13,9 @@ assignees: ''
 
 ## Kryteria Akceptacji
 
-- [ ] Wysokopoziomowy opis efektu końcowego, który można walidować jako: Prawda albo Fałsz
-- [ ] Np. endpoint `/note` został utworzony
+- [ ] Wysokopoziomowy opis efektu końcowego, który można walidować jako: Prawda albo Fałsz. *Np. endpoint `/note` został utworzony*
+- [ ] Zmiany zostały zacommitowane
+- [ ] Commit ze zmianami znajduje się na branchu `master`
 
 ## Informacje (opcjonalne)
 
