@@ -105,14 +105,27 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 - Pair programming
 - Group programming
 
-### Pipeline'y CI/CD : **GitHub Actions**
+### CI/CD : **GitHub Actions**
 
-- ```delete-branch-on-merge.yml```
+#### Dokumentacja
+
+- [GitHub Actions Docs](https://docs.github.com/en/actions/quickstart)
+
+#### Pipeline'y
+
+- `delete-branch-on-merge.yml`
   - Opis: usuwa gałąź połączoną z danym *Pull Request'em*, jeśli *PR* został połączony z gałęzią docelową. Dzięki temu akcja ta pozwala na utrzymanie repozytorium w czystości poprzez automatyczne usuwanie niepotrzebnych gałęzi.
-  - Trigger: *Action* uruchamia się w momencie zamknięcia *Pull Request'a* oznaczonego jako ```closed```. Następnie wykorzystuje istniejące *Action*: ```SvanBoxel/delete-merged-branch```, aby usunąć gałąź, która była źródłem zmian *Pull Requesta*.
+  - Trigger: *Action* uruchamia się w momencie zamknięcia *Pull Request'a* oznaczonego jako ```closed```. Następnie wykorzystuje istniejące *Action*: `SvanBoxel/delete-merged-branch`, aby usunąć gałąź, która była źródłem zmian *Pull Requesta*.
+  - Konfiguracja: plik: `./.github/delete-merged-branch-config.yml`
   - Zależności:
-    - `GITHUB_TOKEN` - Automatycznie tworzony token autoryzacyjny, który umożliwia wykonanie operacji na repozytorium za pomocą API GitHuba. Aby ```secrets.GITHUB_TOKEN``` działał z action prawidłowo istotne jest, aby w ustawieniach repozytorium na GitHubie, w sekcji "*Secrets*", `GITHUB_TOKEN` z został skonfigurowany z odpowiednimi uprawnieniami do usuwania gałęzi. Więcej informacji na temat GITHUB_TOKEN i jego konfiguracji znajduje się w [oficjalnej dokumentacji](https://docs.github.com/en/actions/reference/authentication-in-a-workflow).
+    - `GITHUB_TOKEN` - Automatycznie tworzony token autoryzacyjny, który umożliwia wykonanie operacji na repozytorium za pomocą API GitHuba. Aby `secrets.GITHUB_TOKEN` działał z action prawidłowo istotne jest, aby w ustawieniach repozytorium na GitHubie, w sekcji "*Secrets*", `GITHUB_TOKEN` z został skonfigurowany z odpowiednimi uprawnieniami do usuwania gałęzi. Więcej informacji na temat GITHUB_TOKEN i jego konfiguracji znajduje się w [oficjalnej dokumentacji](https://docs.github.com/en/actions/reference/authentication-in-a-workflow).
     - `SvanBoxel/delete-merged-branch` to *Action*, który usuwa gałęzie z repozytorium po ich scaleniu (*merge*) z innymi gałęziami, najczęściej z główną gałęzią repozytorium. *Action* ten działa następująco: **kiedy następuje zdarzenie typu pull_request o typie closed, *Action* pobiera informacje o zamkniętym *Pull Request'cie* i sprawdza, czy został on scalony**. Jeśli tak, *Action* pobiera informacje o gałęzi, która została scalona z gałęzią główną, i usuwa ją z repozytorium. Dodatkowych informacji na temat *Action* może dostarczy analiza [kodu źródłowego](https://github.com/SvanBoxel/delete-merged-branch).
+- `markdownlint.yml`
+  - Opis: przeprowadza linting wszystkich plików z rozszerzniem `.md` znajdujących się w projekcie, pod kątem poprawności składni języka `markdown`. Więcej informacji na temat reguł walidacji i konfiguracji lintera znajduje się w [oficjalnej dokumentacji](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md)
+  - Trigger:
+    - Push zmian
+    - Modyfikacja *Pull Requesta*
+  - Konfiguracja: plik: `./.markdownlint.json`
 
 ## Dodatkowe informacje
 
