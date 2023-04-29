@@ -105,13 +105,13 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 - Pair programming
 - Group programming
 
-### CI/CD : **GitHub Actions**
+## CI/CD : **GitHub Actions**
 
-#### Dokumentacja
+### Dokumentacja
 
 - [GitHub Actions Docs](https://docs.github.com/en/actions/quickstart)
 
-#### Pipeline'y
+### Pipeline'y
 
 - `delete-branch-on-merge.yml`
   - Opis: usuwa gałąź połączoną z danym *Pull Request'em*, jeśli *PR* został połączony z gałęzią docelową. Dzięki temu akcja ta pozwala na utrzymanie repozytorium w czystości poprzez automatyczne usuwanie niepotrzebnych gałęzi.
@@ -126,6 +126,16 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
     - Push zmian
     - Modyfikacja *Pull Requesta*
   - Konfiguracja: plik: `./.markdownlint.json`
+
+## Skrypty
+
+### Linux
+
+- `refresh-git-remotes-list.sh` - Odświeża listę branchów znajdujących się na remote: origin (domyślna nazwa zdalnego repozytorium)
+
+### Windows
+
+- `refresh-git-remotes-list.bat` - Odświeża listę branchów znajdujących się na remote: origin (domyślna nazwa zdalnego repozytorium)
 
 ## Dodatkowe informacje
 
