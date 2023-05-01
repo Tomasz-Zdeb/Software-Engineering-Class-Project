@@ -1,5 +1,7 @@
 """
-This is a temporary module that defines some required functions for the /note endpoint to work.
+This is a temporary module that defines some required functions 
+for the /note endpoint to work.
+
 It should be removed once the /user and /catalog endpoints are implemented.
 """
 

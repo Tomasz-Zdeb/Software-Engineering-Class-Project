@@ -47,7 +47,7 @@ delete_parser.add_argument('note_id', type=int, required=True, help='Note ID')
 
 
 @api.route('/note')
-@api.doc(description='Main note endpoint. Used for creating, updating, and deleting single notes.')
+@api.doc(description='Main note endpoint. Used for creating, updating, and deleting single notes.')  # noqa
 class Note(Resource):
     @api.expect(get_parser)
     @api.doc(description='Gets a note by its ID.')
@@ -67,13 +67,16 @@ class Note(Resource):
 
     @api.expect(post_parser)
     @api.doc(description='Creates a note and its associated user_note.')
-    @api.doc(responses={404: 'User or catalog not found.', 400: 'Bad request.', 201: 'Success.'})
+    @api.doc(responses={404: 'User or catalog not found.',
+                        400: 'Bad request.',
+                        201: 'Success.'})
     def post(self):
         args = post_parser.parse_args()
 
         if check_if_user_exists(args['user_id']) is False:
             return {"message": "User not found."}, 404
-        elif args['catalog_id'] is not None and check_if_catalog_exists(args['catalog_id']) is False:
+        elif (args['catalog_id'] is not None and
+              check_if_catalog_exists(args['catalog_id']) is False):
             return {"message": "Catalog not found."}, 404
 
         note = NoteModel(
@@ -98,7 +101,9 @@ class Note(Resource):
 
     @api.expect(put_parser)
     @api.doc(description='Updates a note.')
-    @api.doc(responses={404: 'Note or catalog not found.', 400: 'Bad request.', 200: 'Success.'})
+    @api.doc(responses={404: 'Note or catalog not found.',
+                        400: 'Bad request.',
+                        200: 'Success.'})
     def put(self):
         args = put_parser.parse_args()
         args = {k: v for k, v in args.items() if v is not None}
