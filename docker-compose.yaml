@@ -9,3 +9,13 @@ services:
       - "5000:5000"
     environment:
       PYTHONUNBUFFERED: 1
+  db:
+    build: ./DB
+    container_name: db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

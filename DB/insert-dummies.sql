@@ -1,5 +1,3 @@
-\connect ioproject admin_user;
-
 --bin
 INSERT INTO public.bin VALUES (1, NULL, '2023-03-04 11:00:00', NULL);
 INSERT INTO public.bin VALUES (2, NULL, '2023-03-05 12:00:00', NULL);

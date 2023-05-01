@@ -1,5 +1,3 @@
-\connect ioproject admin_user;
-
 --bin
 CREATE TABLE public.bin (
     bin_id SERIAL PRIMARY KEY,
