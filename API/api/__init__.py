@@ -1,3 +1,5 @@
+import sys
+
 from flask import Flask
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
@@ -12,9 +14,14 @@ password = "admin_pass"
 ip = "localhost"
 db_name = "ioproject"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{ip}/{db_name}'
-db = SQLAlchemy(app)
+# Switch to the test database if pytest is running.
 
+if "pytest" in sys.modules:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{ip}/{db_name}_test'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{ip}/{db_name}'
+
+db = SQLAlchemy(app)
 
 from api.routes import hello  # noqa
 from api.routes import note  # noqa
