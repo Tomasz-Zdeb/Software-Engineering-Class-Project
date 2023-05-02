@@ -20,8 +20,10 @@ class NoteModel(db.Model):
             "title": self.title,
             "description": self.description,
             "body": self.body,
-            "created_date": strftime("%Y-%m-%d %H:%M:%S", self.created_date.timetuple()),
-            "updated_date": strftime("%Y-%m-%d %H:%M:%S", self.updated_date.timetuple())
+            "created_date": strftime("%Y-%m-%d %H:%M:%S",
+                                     self.created_date.timetuple()),
+            "updated_date": strftime("%Y-%m-%d %H:%M:%S",
+                                     self.updated_date.timetuple())
         }
 
     def save(self):
