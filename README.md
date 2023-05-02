@@ -133,11 +133,34 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 
 - `refresh-git-remotes-list.sh` - Odświeża listę branchów znajdujących się na remote: origin (domyślna nazwa zdalnego repozytorium)
 
+- `stop-app.sh` - Zatrzymuje aplikację i usuwa persistent storage volumes
+
+- `start-app.sh` - Jeżeli aplikacja jest uruchomiona, zatrzymuje ją, buduje na nowo wszystkie obrazy i uruchamia w trybie detached (w tle)
+
 ### Windows
 
 - `refresh-git-remotes-list.bat` - Odświeża listę branchów znajdujących się na remote: origin (domyślna nazwa zdalnego repozytorium)
 
-## Dodatkowe informacje
+## Konteneryzacja Aplikacji : Docker
+
+Każdy z komponentów aplikacji przystosowany jest do uruchamiania w kontenerze **Dockera**. Każdy komponent zawiera w swoim katalogu plik: `Dockerfile` pozwalający na zbudowanie obrazu.
+
+W celu uproszczenia procesu uruchamiania aplikacji wykorzystywane jest narzędzie: `docker-compose` pozwalające na uruchomienie kontenerów, stworzenie sieci i przeprowadzenie wszelkiej konfiguracji niezbędnej do prawidłowego współdziałania komponentów aplikacji.
+
+
+### Volumes
+
+Kontenery z natury są nietrwałe/ulotne. Oznacza to że z momentem usunięcia danego kontenera wszelkie dane z nim związane są tracone. Docker oferuje jednak możliwość utworzenia trwałych wolumenów danych i zmapowanie ich z danym kontenerem co pozwala na przechowywanie danych np. zapisanych w bazie danych bez względu na to czy w danym momencie istnieje kontener zawierający baze danych czy nie.
+
+Aby usunąć wolumeny zdefiniowane przez `docker-compose` należy skorzystać z flagi: `--volumes`
+
+- `docker-compose down --volumes`
+
+### Referencje
+
+- [Dokumentacja obrazu PostgrSQL](https://hub.docker.com/_/postgres/)
+
+## Dodatkowe Informacje
 
 - Lista uczestników znajduje się na prywatnym kanale Discord w celu ograniczenia dostępu do niej
 

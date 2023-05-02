@@ -7,8 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 api = Api(app)
 
-# Temporary database configuration, should be moved to a separate file or read from environment variables
-
+# Temporary database configuration, should be moved to a separate file
+# or read from environment variables
 user = "admin_user"
 password = "admin_pass"
 ip = "localhost"
