@@ -45,4 +45,4 @@ jobs:
               with:
                   pytest-coverage-path: ./pytest-coverage.txt
                   junitxml-path: ./pytest.xml
-                  default-branch: ${{ github.ref_name }}
+                  default-branch:
