@@ -2,9 +2,8 @@ name: Python - Pytest
 
 on:
     push:
-        # Temporary disabled for testing
-        # paths:
-        #     - "API/**"
+        paths:
+            - "API/**"
     workflow_dispatch:
 
 jobs:
@@ -45,4 +44,3 @@ jobs:
               with:
                   pytest-coverage-path: ./pytest-coverage.txt
                   junitxml-path: ./pytest.xml
-                  default-branch:
