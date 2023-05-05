@@ -126,6 +126,12 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
     - Push zmian
     - Modyfikacja *Pull Requesta*
   - Konfiguracja: plik: `./.markdownlint.json`
+- `pythonlint.yml`
+  - Opis: przeprowadza linting całego katalogu `API` pod kątem poprawności składni i stylu kodu w języku `Python`. W *Action* wykorzystywany jest linter "Ruff", więcej informacji na temat samego lintera i jego konfiguracji znajduję się w [oficjalnej dokumentacji](https://beta.ruff.rs/docs/).
+  - Trigger:
+    - Push zmian w katalogu `API`
+  - Konfiguracja: plik: `/.github/workflows/pythonlint.yml`
+  
 
 ## Skrypty
 
