@@ -11,3 +11,5 @@ assignees: ''
 - [ ] ...
 - [ ] Zmiany zostały zacommitowane
 - [ ] Commit ze zmianami znajduje się na branchu `master`
+- [ ] Zmiany zostaly przetestowane
+- [ ] Test evidence zostało dołączone do Issue

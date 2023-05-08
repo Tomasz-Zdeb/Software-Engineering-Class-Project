@@ -16,7 +16,9 @@ assignees: ''
 - [ ] Wysokopoziomowy opis efektu końcowego, który można walidować jako: Prawda albo Fałsz. *Np. endpoint `/note` został utworzony*
 - [ ] Zmiany zostały zacommitowane
 - [ ] Commit ze zmianami znajduje się na branchu `master`
+- [ ] Zmiany zostaly przetestowane
+- [ ] Test evidence zostało dołączone do Issue
 
 ## Informacje (opcjonalne)
 
-* Np. podobny endpoint `/notes` istnieje i zwraca listę notatek
+- Np. podobny endpoint `/notes` istnieje i zwraca listę notatek
