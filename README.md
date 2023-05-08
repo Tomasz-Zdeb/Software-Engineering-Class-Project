@@ -131,6 +131,14 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
   - Trigger:
     - Push zmian w katalogu `API`
   - Konfiguracja: plik: `/.github/workflows/pythonlint.yml`
+- `pytest.yml`
+  - Opis: uruchamia zdefiniowane testy dla `API` i przeprowadza analizę pokrycia dla folderu `API/api`, wykorzystując bibliotekę PyTest. W celu
+  poprawnego sprawdzenia wszystkich funkcjonalności, *action* tworzy też tymczasową bazę danych Postgres.
+  - Zależności:
+    - `MishaKav/pytest-coverage-comment@main` - *Action*, który dodaje wyniki testów i analizy pokrycia jako komentarz do danego pusha.
+  - Trigger:
+    - Push zmian w katalogu `API`
+  - Konfiguracja: plik: `/.github/workflows/pytest.yml`
   
 
 ## Skrypty
