@@ -2,7 +2,7 @@
 
 ## Flask
 
-Flask to mikro-framework napisany w języku Python, który pozwala na tworzenie aplikacji internetowych. 
+Flask to mikro-framework napisany w języku Python, który pozwala na tworzenie aplikacji internetowych.
 
 Charakteryzuje się:
 
