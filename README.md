@@ -94,11 +94,18 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 
 ### Branching
 
-- Aktualny stan projektu reprezentowany jest przez branch: **master**
-- Zadania (Issues) implementuje się na dedykowanych branchach o nazwach odpowiadających nazwie zadania, które po zakończeniu pracy nad zadaniem merguje się do brancha master poprzez stworzenie Pull Requesta
-- Pull Requesty pozostawia się z domyślną nazwę
-- Opis w Pull Requeście jest tworzony jedynie gdy stopień złożoności zmian jest bardzo wysoki
-- Po zmergowaniu Pull Requesta, branch jest usuwany
+Aktualny stan projektu reprezentowany jest przez branch: **master**. Ponadto w projekcie występują dwa rodzaje branchów wykorzystujące dedykowane namespace'y:
+
+- `issue/...`
+- `release/...`
+
+![Branching-Diagram](./images/branching.drawio.png)
+
+#### Pull-Requesty
+
+- Pull Requesty noszą nazwę taką jak nazwa brancha który mergują
+- Opis w Pull Requeście jest dodwany jedynie gdy stopień złożoności zmian wymaga dodatkowych objaśnień
+- Po zmergowaniu Pull Requesta, branch jest usuwany (automatycznie dzięki pipelinowi: delete-branch-on-merge)
 
 ### Techniki Programistyczne
 
