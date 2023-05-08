@@ -147,20 +147,30 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 
 - `refresh-git-remotes-list.bat` - Odświeża listę branchów znajdujących się na remote: origin (domyślna nazwa zdalnego repozytorium)
 
-## Konteneryzacja Aplikacji : Docker
+### Konteneryzacja Aplikacji : Docker
 
-Każdy z komponentów aplikacji przystosowany jest do uruchamiania w kontenerze **Dockera**. Każdy komponent zawiera w swoim katalogu plik: `Dockerfile` pozwalający na zbudowanie obrazu.
+Docker to platforma do tworzenia, dystrybucji i uruchamiania kontenerów aplikacji, która umożliwia izolację zależności i zapewnia spójne środowisko na różnych platformach.
 
-W celu uproszczenia procesu uruchamiania aplikacji wykorzystywane jest narzędzie: `docker-compose` pozwalające na uruchomienie kontenerów, stworzenie sieci i przeprowadzenie wszelkiej konfiguracji niezbędnej do prawidłowego współdziałania komponentów aplikacji.
+Każdy z komponentów aplikacji przystosowany jest do uruchamiania w kontenerze **Dockera**. Każdy komponent zawiera w swoim katalogu plik `Dockerfile`, który jest instrukcją dla Dockera, opisującą jak zbudować obraz kontenera dla danego komponentu. Dockerfile określa bazowy obraz, na którym opiera się komponent, oraz dodatkowe zależności, konfiguracje i skrypty niezbędne do uruchomienia komponentu w kontenerze.
 
+W celu uproszczenia procesu uruchamiania aplikacji wykorzystywane jest narzędzie `docker-compose`, pozwalające na uruchomienie kontenerów, stworzenie sieci i przeprowadzenie wszelkiej konfiguracji niezbędnej do prawidłowego współdziałania komponentów aplikacji.
 
-### Volumes
+Do zarządzania aplikacją przy pomocy narzędzia docker-compose wykorzystuje się poniższe komendy, znajdując się w głównym katalogu projektu:
 
-Kontenery z natury są nietrwałe/ulotne. Oznacza to że z momentem usunięcia danego kontenera wszelkie dane z nim związane są tracone. Docker oferuje jednak możliwość utworzenia trwałych wolumenów danych i zmapowanie ich z danym kontenerem co pozwala na przechowywanie danych np. zapisanych w bazie danych bez względu na to czy w danym momencie istnieje kontener zawierający baze danych czy nie.
+- `docker-compose up` - Buduje obrazy i uruchamia kontenery wg. konfiguracji, logi przekierowywane są do konsoli
+- `docker-compose up -d` - W przeciwieństwie do powyższego polecenia nie przekierowuje logów do konsoli (uruchmia aplikacje w tle)
+- `docker-compose build` - Wymusza ponownie zbudowanie obrazów (czasami w przypadku zmian, dotyczących plików Dockerfile użycie docker-compose up nie skutkuje ponownym zbudowaniem kontenerów i zmiany nie są widoczne - wtedy niniejsze polecenie może okazać się przydatne)
+- `docker-compose down` - Zatrzymuje kontenery i usuwa skonfigurowane sieci
+- docker-compose down --volumes Rozszerza powyższe polecenie o usunięcie: volumes
+- `docker-compose ps` - Wyświetla listę uruchomionych kontenerów wraz z ich statusem
+- `docker-compose logs` - Wyświetla logi dla wszystkich usług zdefiniowanych w pliku docker-compose
+- `docker-compose logs <service>` - Wyświetla logi dla konkretnej usługi, gdzie `<service>` to nazwa usługi zdefiniowanej w pliku docker-compose
+- `docker-compose restart` - Restartuje wszystkie kontenery usług zdefiniowanych w pliku docker-compose
+- `docker-compose restart <service>` - Restartuje kontener dla konkretnej usługi, gdzie `<service>` to nazwa usługi zdefiniowanej w pliku docker-compose
 
-Aby usunąć wolumeny zdefiniowane przez `docker-compose` należy skorzystać z flagi: `--volumes`
+#### Volumes
 
-- `docker-compose down --volumes`
+Kontenery z natury są nietrwałe/ulotne. Oznacza to, że z momentem usunięcia danego kontenera wszelkie dane z nim związane są tracone. Docker oferuje jednak możliwość utworzenia trwałych wolumenów danych i zmapowanie ich z danym kontenerem, co pozwala na przechowywanie danych, np. zapisanych w bazie danych, bez względu na to, czy w danym momencie istnieje kontener zawierający bazę danych czy nie.
 
 ### Referencje
 
