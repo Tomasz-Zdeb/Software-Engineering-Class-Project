@@ -10,8 +10,8 @@ api = Api(app)
 # Temporary database configuration, should be moved to a separate file
 # or read from environment variables
 user = "admin_user"
-password = "admin_pass"
-ip = "localhost"
+password = "mypassword"
+ip = "db"
 db_name = "ioproject"
 
 # Switch to the test database if pytest is running.
