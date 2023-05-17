@@ -10,14 +10,14 @@ api = Api(app)
 # Temporary database configuration, should be moved to a separate file
 # or read from environment variables
 user = "admin_user"
-password = "admin_pass"
-ip = "localhost"
+password = "mypassword"
+ip = "db"
 db_name = "ioproject"
 
 # Switch to the test database if pytest is running.
 
 if "pytest" in sys.modules:
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{ip}/{db_name}_test'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@localhost/{db_name}_test'
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{user}:{password}@{ip}/{db_name}'
 
