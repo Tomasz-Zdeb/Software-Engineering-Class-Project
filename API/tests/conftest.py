@@ -16,8 +16,8 @@ def app():
     # Initial setup
     with app.app_context():
         db.create_all()
-        UserModel(username="test_user", password="test_pass",
-                  created_date="2021-01-01").save()
+        UserModel(name="test_user", password="test_pass",
+                  created_date="2021-01-01", email="test_email").save()
         NoteModel(title="test_title", description="test_description",
                   body="test_body", created_date="2021-01-01",
                   updated_date="2021-01-01").save()

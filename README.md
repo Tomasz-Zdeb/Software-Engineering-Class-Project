@@ -77,6 +77,12 @@ Wybór  ten  podyktowany  jest  kilkoma  istotnymi  zaletami, które  sprawiają
 }
 ```
 
+## Uwierzytelnianie użytkowników
+
+Uwierzytelnianie użytkowników odbywa się za pomocą tokenów JWT (JSON Web Token). Tokeny te są generowane przez API i przesyłane do klienta, który używa ich do autoryzacji operacji wymagających uwierzytelnienia. Dokładny opis mechanizmu uwierzytelniania znajduje się w [dokumentacji API](
+  https://github.com/Tomasz-Zdeb/Software-Engineering-Class-Project/blob/master/API/DOCS.md
+).
+
 ## Model kolaboracji
 
 ### Definiowanie zadań : **Backlog**
