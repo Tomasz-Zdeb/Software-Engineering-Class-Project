@@ -43,3 +43,48 @@ Wybraliśmy SQLAlchemy ze względu na:
 ### Porównanie z innymi bibliotekami: SQLAlchemy vs. Psycopg2
 
 Psycopg2 to również popularna biblioteka Python, służąca do łączenia się i zarządzania bazą danych PostgreSQL. Jednak w przeciwieństwie do SQLAlchemy, Psycopg2 nie jest ORM i operuje na niższym poziomie abstrakcji, co oznacza, że programiści muszą pisać więcej kodu SQL i zarządzać strukturami danych ręcznie.
+
+## Flask-JWT-Extended
+
+Flask-JWT-Extended to rozszerzenie dla Flask, które ułatwia implementację uwierzytelniania i autoryzacji w aplikacjach internetowych. Zapewnia mechanizmy uwierzytelniania oparte na tokenach JWT (JSON Web Token).
+
+## Mechanizm uwierzytelniania użytkowników
+
+Mechanizm uwierzytelniania użytkowników opiera się o JWT (JSON Web Token). JWT to standard definiujący sposób przesyłania informacji
+pomiędzy stronami w formie obiektów JSON. Przesyłany token jest podpisany cyfrowo, co pozwala na weryfikację jego autentyczności.
+
+### Logowanie
+
+Podczas logowania, dane wprowadzone przez użytkownika sprawdzane są z danymi znajdującymi się w bazie danych. Jeśli dane są zgodne,
+zwrócony zostaje token JWT. W tokenie zapisane jest ID zalogowanego użytkownika, wykorzystywane później przy wykonywaniu różnych operacji w aplikacji (np. tworzenie nowej notatki).
+
+Po udanym logowaniu, token zwracany jest w następującym formacie:
+
+```json
+{'access_token': access_token}
+```
+
+### Rejestracja
+
+Rejestracja polega na dodaniu nowego użytkownika do bazy danych. W przypadku, gdy użytkownik o podanym adresie email już istnieje, rejestracja nie zostanie przeprowadzona. Po udanej rejestracji token JWT nie zostaje zwrócony. Logowanie musi zostać przeprowadzone osobno.
+
+### Autoryzacja
+
+Autoryzacja polega na sprawdzeniu, czy użytkownik ma uprawnienia do wykonania danej operacji. Brak tokena w nagłówku będzie
+zawsze skutkować odmową dostępu, dla każdego endpointu, który wymaga autoryzacji. W przypadku, gdy token jest obecny, sprawdzane jest czy:
+
+- token jest poprawny
+- token nie wygasł (domyślnie 1 godzina)
+- użytkownik ma uprawnienia do wykonania danej operacji (np. czy edytuje własną notatkę)
+
+Informacja o wymogu tokena dla danego endpointa znajduje się w dokumentacji Swagger. Token należy przekazać w nagłówku Authorization w formacie `Bearer <token>`, za każdym razem
+gdy następuje dostęp do chronionego endpointu.
+
+### Wygasanie tokena i wylogowanie
+
+Mechanizm wygasania tokena jest zaimplementowany w podstawowej formie. Token wygasa po upływie określonego czasu (domyślnie 1 godzina). Po wygaśnięciu tokena, użytkownik musi zalogować się ponownie, aby uzyskać nowy token. Mechanizm ten może
+zostać dodatkowo rozbudowany o tokeny odświeżąjące, które pozwalają na przedłużenie czasu ważności tokena.
+
+Nie istnieje sposób na ręczne unieważnienie wprost tokena, dlatego w aktualnej implementacji mechanizm wylogowania
+użytkownika musi polegać na usunięciu tokena z pamięci po stronie klienta (czyli stronie frontendowej). W aplikacji produkcyjnej ten mechanizm powinien być
+rozbudowany o rozwiązanie, polegające na prowadzeniu listy unieważnionych tokenów, tak by móc unieważniać tokeny również po stronie API.
