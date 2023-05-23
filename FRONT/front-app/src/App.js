@@ -1,11 +1,11 @@
 import React from 'react';
-import DummyComponent from './components/DummyComponent';
+import EditorComponent from "./components/Editor/EditorComponent";
 
 function App() {
   return (
-    <div className="App">
-      <DummyComponent />
-    </div>
+
+      <EditorComponent />
+
   );
 }
 

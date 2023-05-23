@@ -1,0 +1,1 @@
+//TODO komunikacja z backendem - fetchowanie danych

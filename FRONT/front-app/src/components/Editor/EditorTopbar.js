@@ -1,0 +1,1 @@
+//TODO komponent odpowiedzialny za wyświetlenie/edycje nazwy notatki oraz w przyszłości przyciski funkcyjne

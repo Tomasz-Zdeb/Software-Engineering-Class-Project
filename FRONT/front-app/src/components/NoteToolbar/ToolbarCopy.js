@@ -1,0 +1,1 @@
+//główny układ edytora bezpośrednio pod App.js
