@@ -16,6 +16,81 @@ def test_login(client):
     assert 'access_token' in response.json
 
 
+def test_login_400_no_password(client):
+    response = client.post(
+        '/login',
+        data=json.dumps({
+            'email': 'test_email',
+            'password': ''
+        }),
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    assert 'access_token' not in response.json
+    assert response.json['message'] == 'Username, email and password required.'
+
+
+def test_login_400_no_email(client):
+    response = client.post(
+        '/login',
+        data=json.dumps({
+            'email': '',
+            'password': 'test_pass'
+        }),
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    assert 'access_token' not in response.json
+    assert response.json['message'] == 'Username, email and password required.'
+
+
+def test_register_400_no_name(client):
+    response = client.post(
+        '/register',
+        data=json.dumps({
+            'name': '',
+            'email': 'test_email2',
+            'password': 'test_pass2'
+        }),
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    assert response.json['message'] == 'Username, email and password required.'
+
+
+def test_register_400_no_email(client):
+    response = client.post(
+        '/register',
+        data=json.dumps({
+            'name': 'test_user2',
+            'email': '',
+            'password': 'test_pass2'
+        }),
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    assert response.json['message'] == 'Username, email and password required.'
+
+
+def test_register_400_no_password(client):
+    response = client.post(
+        '/register',
+        data=json.dumps({
+            'name': 'test_user2',
+            'email': 'test_email2',
+            'password': ''
+        }),
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    assert response.json['message'] == 'Username, email and password required.'
+
+
 def test_login_403(client):
     response = client.post(
         '/login',
