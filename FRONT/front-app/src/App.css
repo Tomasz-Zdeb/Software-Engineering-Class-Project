@@ -1,18 +1,66 @@
-.App {
-  text-align: center;
+.app {
+    height: 1000px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.topbar {
+    height: 80px;
+    width: 100%;
+    background-color: var(--bs-gray-500);
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+    display: flex;
+    height: 800px;
+    width: 100%;
+}
+
+.leftbar {
+    height: 800px;
+    background-color: lightgray;
+}
+
+.noteItem {
+    height: 800px;
+    background-color: lightgray;
+}
+
+.rightbar {
+    height: 800px;
+    background-color: lightgray;
+}
+
+.note-text {
+    width: 100%;
+    height: 80%;
+    resize: none;
+    border: none;
+    color: inherit;
+    overflow-y: auto;
+    background-color: lightskyblue;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar-button {
+    margin: 5px;
+}
+
+.toolbar-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-window {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    min-height: 100px;
+    background-color: lightskyblue;
 }
