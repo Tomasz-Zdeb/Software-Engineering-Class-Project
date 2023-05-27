@@ -31,8 +31,14 @@ class Login(Resource):
     @api.doc(params={'email': 'Email', 'password': 'Password'})
     @api.response(200, 'Success')
     @api.response(403, 'Forbidden')
+    @api.response(400, 'Bad request')
     def post(self):
         args = login_parser.parse_args()
+
+        if not all(args.values()) or \
+                not len(args['email'].rstrip()) or \
+                not len(args['password'].rstrip()):
+            return {'message': 'Username, email and password required.'}, 400
 
         user = UserModel.query.filter_by(email=args['email']).first()
 
@@ -53,8 +59,15 @@ class Register(Resource):
     @api.doc(params={'name': 'Username', 'email': 'Email', 'password': 'Password'})
     @api.response(200, 'Success')
     @api.response(403, 'Forbidden')
+    @api.response(400, 'Bad request')
     def post(self):
         args = register_parser.parse_args()
+
+        if not all(args.values()) or \
+                not len(args['name'].rstrip()) or \
+                not len(args['email'].rstrip()) or \
+                not len(args['password'].rstrip()):
+            return {'message': 'Username, email and password required.'}, 400
 
         user = UserModel.query.filter(
             or_(UserModel.email == args['email'],
