@@ -3,6 +3,8 @@ from api.utilities.db_utils import check_if_user_exists
 from api.utilities.user_note import get_user_note_by_note_id
 from api.utilities.catalog import get_catalog_id_by_name, get_catalog_name_by_id
 from api.models.catalog import CatalogModel
+from api.utilities.notes import get_all_notes_of_user
+from api.utilities.common import remove_dict_fields
 import datetime
 
 
@@ -61,3 +63,28 @@ def test_get_catalog_name_by_id(client, app):
         ).save()
         assert get_catalog_name_by_id(1) == "test_catalog"
         assert get_catalog_name_by_id(100) is None
+
+
+def test_get_all_notes_of_user(client, app):
+    with app.app_context():
+        notes = get_all_notes_of_user(1)
+        assert len(notes) == 1
+        assert notes[0].note_id == 1
+        assert notes[0].title == "test_title"
+        assert notes[0].description == "test_description"
+        assert notes[0].body == "test_body"
+        assert notes[0].catalog_id is None
+
+        notes = get_all_notes_of_user(100)
+        assert len(notes) == 0
+
+
+def test_remove_dict_fields(client, app):
+    test_dict = {
+        "key1": "value1",
+        "key2": "value2",
+        "key3": "value3"
+    }
+
+    assert remove_dict_fields(test_dict, ["key1", "key2"]) == {
+        "key3": "value3"}

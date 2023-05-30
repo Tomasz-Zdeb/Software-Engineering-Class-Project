@@ -5,6 +5,7 @@ import pytest
 from api.models.note import NoteModel
 from api.models.user import UserModel
 from api.models.user_note import UserNoteModel
+from api.models.catalog import CatalogModel
 
 
 @pytest.fixture()
@@ -24,6 +25,8 @@ def app():
                   body="test_body", created_date="2021-01-01",
                   updated_date="2021-01-01").save()
         UserNoteModel(user_id=1, note_id=1).save()
+        CatalogModel().save()
+        CatalogModel().save()
 
     yield app
 
