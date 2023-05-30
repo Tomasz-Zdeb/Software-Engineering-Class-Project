@@ -7,3 +7,6 @@ ALTER SCHEMA public OWNER TO admin_user;
 COMMENT ON SCHEMA public IS 'standard public schema';
 SET default_tablespace = '';
 SET default_table_access_method = heap;
+
+-- Pgcrypto
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
