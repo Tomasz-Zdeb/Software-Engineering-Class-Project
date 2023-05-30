@@ -11,16 +11,16 @@ INSERT INTO public.bin VALUES (DEFAULT, NULL, '2023-03-09 15:00:00', NULL);
 INSERT INTO public.bin VALUES (DEFAULT, NULL, '2023-03-10 15:00:00', NULL);
 
 --catalog
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-04 10:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-05 11:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-06 12:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-07 13:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-08 14:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-08 14:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-08 15:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-08 16:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-09 17:00:00');
-INSERT INTO public.catalog VALUES (DEFAULT, '2023-03-10 14:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname','2023-03-04 10:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname2','2023-03-05 11:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname3','2023-03-06 12:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname4','2023-03-07 13:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname5','2023-03-08 14:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname6','2023-03-08 14:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname7','2023-03-08 15:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname8','2023-03-08 16:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname9','2023-03-09 17:00:00');
+INSERT INTO public.catalog VALUES (DEFAULT, 'catalogname10','2023-03-10 14:00:00');
 
 --note
 INSERT INTO public.note VALUES (DEFAULT, NULL, 'titletest', 'desctest', 'bodytest', '2023-03-04 01:00:00', '2023-03-04 02:00:00');
@@ -47,16 +47,16 @@ INSERT INTO public.tag VALUES (DEFAULT, 'tagtest9');
 INSERT INTO public.tag VALUES (DEFAULT, 'tagtest10');
 
 --user_table
-INSERT INTO public.user_table VALUES (DEFAULT, 'user1', 'testtest', 'testtest@test.com', 1, '2023-03-04 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user2', 'testtest2', 'testtest2@test.com', 2, '2023-03-05 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user3', 'testtest3', 'testtest3@test.com', 1, '2023-03-06 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user4', 'testtest4', 'testtest4@test.com', 2, '2023-03-07 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user5', 'testtest5', 'testtest5@test.com', 1, '2023-03-08 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user6', 'testtest6', 'testtest6@test.com', 1, '2023-03-09 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user7', 'testtest7', 'testtest7@test.com', 1, '2023-03-09 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user8', 'testtest8', 'testtest8@test.com', 1, '2023-03-10 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user9', 'testtest9', 'testtest9@test.com', 1, '2023-03-10 18:55:55');
-INSERT INTO public.user_table VALUES (DEFAULT, 'user10', 'testtest10', 'testtest10@test.com', 1, '2023-03-11 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user1', gen_salt('bf'), crypt('password123', gen_salt('bf')), 'testtest@test.com', 1, '2023-03-04 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user2', gen_salt('bf'), crypt('password1234', gen_salt('bf')), 'testtest2@test.com', 2, '2023-03-05 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user3', gen_salt('bf'), crypt('password1235', gen_salt('bf')), 'testtest3@test.com', 1, '2023-03-06 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user4', gen_salt('bf'), crypt('password1236', gen_salt('bf')), 'testtest4@test.com', 2, '2023-03-07 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user5', gen_salt('bf'), crypt('password1237', gen_salt('bf')), 'testtest5@test.com', 1, '2023-03-08 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user6', gen_salt('bf'), crypt('password1238', gen_salt('bf')), 'testtest6@test.com', 1, '2023-03-09 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user7', gen_salt('bf'), crypt('password1239', gen_salt('bf')), 'testtest7@test.com', 1, '2023-03-09 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user8', gen_salt('bf'), crypt('password123', gen_salt('bf')), 'testtest8@test.com', 1, '2023-03-10 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user9', gen_salt('bf'), crypt('password1234', gen_salt('bf')), 'testtest9@test.com', 1, '2023-03-10 18:55:55');
+INSERT INTO public.user_table VALUES (DEFAULT, 'user10', gen_salt('bf'), crypt('password1235', gen_salt('bf')), 'testtest10@test.com', 1, '2023-03-11 18:55:55');
 
 --note_tag
 INSERT INTO public.note_tag VALUES (DEFAULT, 1, 1);
