@@ -48,7 +48,6 @@ CREATE TABLE public.user_note (
 CREATE TABLE public.user_table (
     user_id SERIAL PRIMARY KEY,
     name character varying(100) NOT NULL,
-    salt VARCHAR(50) NOT NULL,
     hashed_password VARCHAR(100) NOT NULL,
     email text UNIQUE,
     enabled integer DEFAULT 0,

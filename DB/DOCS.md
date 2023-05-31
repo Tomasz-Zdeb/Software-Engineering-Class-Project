@@ -37,10 +37,10 @@
 
 ### Hashowanie haseł
 
-- metoda potrzebuje stworzenia rozszerzenia pgcrypto oraz dwóch tabel:
-  - salt
-  - hashed_password
+- metoda potrzebuje stworzenia rozszerzenia pgcrypto i tabeli:
+  - `hashed_password`
 - wprowadzanie nowego użytkownika odbywa się za pomocą:
-  INSERT INTO user_table (username, salt, hashed_password)
-  VALUES ('user_name', gen_salt('bf'), crypt('userpassword', gen_salt('bf')));
+  `INSERT INTO user_table (username, hashed_password)`
+  `VALUES ('user_name', crypt('userpassword', gen_salt('bf')));`
+- W przypadku dodawania nowych użytkowników przez API hashowanie odbywa się w API i DB przechowuje już zahashowane hasło (z saltem) w tabeli hashed_password
 
