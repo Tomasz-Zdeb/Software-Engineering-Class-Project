@@ -78,7 +78,7 @@ class Register(Resource):
 
         new_user = UserModel(
             name=args['name'],
-            password=hash_password(args['password']),
+            hashed_password=hash_password(args['password']),
             email=args['email'],
             created_date=datetime.datetime.now())
         new_user.save()
