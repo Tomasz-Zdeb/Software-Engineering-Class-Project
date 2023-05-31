@@ -92,3 +92,7 @@ rozbudowany o rozwiązanie, polegające na prowadzeniu listy unieważnionych tok
 ## Flask-CORS
 
 Flask-CORS to rozszerzenie dla Flask, które zapewnia obsługę polityki CORS (Cross-Origin Resource Sharing). CORS to mechanizm, który pozwala na wymianę zasobów pomiędzy różnymi domenami. Dzięki temu, aplikacja frontendowa może komunikować się z API. Zastosowanie biblioteki Flask-CORS znacznie ułatwia konfigurację mechanizmu CORS w API, bez konieczności ręcznego definiowania nagłówków HTTP.
+
+## Flask-Bcrypt
+
+Flask-Bcrypt to rozszerzenie dla Flask, które zapewnia funkcjonalność hashowania haseł. Hasła są hashowane przed zapisaniem do bazy danych. Przy logowaniu hash wprowadzonego hasła jest porównywany z hashem zapisanym w bazie danych. Hashowanie odbywa się za pomocą funkcji bcrypt i szyfru Blowfish.
