@@ -47,7 +47,7 @@ def test_get(client):
                              "body": "test_body",
                              "created_date": "2021-01-01 00:00:00",
                              "updated_date": "2021-01-01 00:00:00",
-                             'catalog_id': None}
+                             'catalog_name': None}
 
 
 def test_put(client):
@@ -61,7 +61,7 @@ def test_put(client):
             title="updated title",
             description="updated description",
             body="updated body",
-            catalog_id=None
+            catalog_name=None
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
@@ -133,7 +133,6 @@ def test_get_404(client):
 
 def test_post_404(client):
     with client.application.app_context():
-        token = create_access_token(identity=1)
         invalid_user_token = create_access_token(identity=100)
 
     response = client.post(
@@ -143,18 +142,6 @@ def test_post_404(client):
     )
     assert response.status_code == 404
     assert response.json == {"message": "User not found."}
-
-    response = client.post(
-        '/note',
-        data=json.dumps(dict(
-            user_id=1,
-            catalog_id=100
-        )),
-        content_type='application/json',
-        headers={'Authorization': f'Bearer {token}'}
-    )
-    assert response.status_code == 404
-    assert response.json == {"message": "Catalog not found."}
 
 
 def test_delete_404(client):
@@ -184,7 +171,7 @@ def test_put_404(client):
             title="updated title",
             description="updated description",
             body="updated body",
-            catalog_id=None
+            catalog_name=None
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
@@ -192,22 +179,6 @@ def test_put_404(client):
 
     assert response.status_code == 404
     assert response.json == {"message": "Note not found."}
-
-    response = client.put(
-        '/note',
-        data=json.dumps(dict(
-            note_id=1,
-            catalog_id=100,
-            title="updated title",
-            description="updated description",
-            body="updated body",
-        )),
-        content_type='application/json',
-        headers={'Authorization': f'Bearer {token}'}
-    )
-
-    assert response.status_code == 404
-    assert response.json == {"message": "Catalog not found."}
 
 
 def test_put_400(client):
@@ -221,7 +192,7 @@ def test_put_400(client):
             title="updated title",
             description="updated description",
             body="updated body",
-            catalog_id=None
+            catalog_name=None
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
