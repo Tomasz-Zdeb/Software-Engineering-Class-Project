@@ -57,6 +57,7 @@ def test_get_notes_single_cataloged_and_uncataloged(client):
     assert 'catalog_id' not in response.json['uncataloged'][0]
 
     assert response.json['catalogs'][0]['catalog_id'] == 1
+    assert response.json['catalogs'][0]['catalog_name'] == 'test_catalog1'
     assert response.json['catalogs'][0]['notes'][0]['title'] == 'test_title2'
     assert response.json['catalogs'][0]['notes'][0]['description'] == 'test_description2'  # noqa
     assert response.json['catalogs'][0]['notes'][0]['created_date'] == '2021-01-01 00:00:00'  # noqa
@@ -92,7 +93,9 @@ def test_get_notes_multiple_cataloged_and_uncataloged(client):
     assert response.json['uncataloged'][0]['note_id'] == 1
 
     assert response.json['catalogs'][0]['catalog_id'] == 1
+    assert response.json['catalogs'][0]['catalog_name'] == 'test_catalog1'
     assert response.json['catalogs'][0]['notes'][0]['title'] == 'test_title2'
 
     assert response.json['catalogs'][1]['catalog_id'] == 2
+    assert response.json['catalogs'][1]['catalog_name'] == 'test_catalog2'
     assert response.json['catalogs'][1]['notes'][0]['title'] == 'test_title3'

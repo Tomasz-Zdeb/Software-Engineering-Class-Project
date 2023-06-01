@@ -2,7 +2,6 @@ from api.utilities.note import check_if_note_exists, get_note_by_id
 from api.utilities.db_utils import check_if_user_exists
 from api.utilities.user_note import get_user_note_by_note_id
 from api.utilities.catalog import get_catalog_id_by_name, get_catalog_name_by_id
-from api.models.catalog import CatalogModel
 from api.utilities.notes import get_all_notes_of_user
 from api.utilities.common import remove_dict_fields
 import datetime
@@ -47,21 +46,13 @@ def test_get_user_note_by_note_id(client, app):
 
 def test_get_catalog_id_by_name(client, app):
     with app.app_context():
-        CatalogModel(
-            name="test_catalog",
-            created_date=datetime.datetime(2021, 1, 1, 0, 0)
-        ).save()
-        assert get_catalog_id_by_name("test_catalog") == 1
-        assert get_catalog_id_by_name("test_catalog_2") is None
+        assert get_catalog_id_by_name("test_catalog1") == 1
+        assert get_catalog_id_by_name("test_catalog10") is None
 
 
 def test_get_catalog_name_by_id(client, app):
     with app.app_context():
-        CatalogModel(
-            name="test_catalog",
-            created_date=datetime.datetime(2021, 1, 1, 0, 0)
-        ).save()
-        assert get_catalog_name_by_id(1) == "test_catalog"
+        assert get_catalog_name_by_id(1) == "test_catalog1"
         assert get_catalog_name_by_id(100) is None
 
 

@@ -4,6 +4,7 @@ from flask_restx import Resource, reqparse
 from api import api
 from api.utilities.notes import get_all_notes_of_user
 from api.utilities.common import remove_dict_fields
+from api.utilities.catalog import get_catalog_name_by_id
 
 get_parser = reqparse.RequestParser()
 get_parser.add_argument('Authorization', type=str,
@@ -39,7 +40,8 @@ class Notes(Resource):
                     catalog_id not in [catalog['catalog_id'] for catalog in catalogs]:
                 catalogs.append(
                     {
-                        'catalog_id': note.catalog_id,
+                        'catalog_name': get_catalog_name_by_id(catalog_id),
+                        'catalog_id': catalog_id,
                         'notes': [remove_dict_fields(note.to_dict(),
                                                      ['body', 'catalog_id'])
                                   for note in notes
