@@ -35,3 +35,12 @@
 
 - `insert-dummies.sql` Wprowadza do każdej tabeli po 10 dummy rekordów
 
+### Hashowanie haseł
+
+- metoda potrzebuje stworzenia rozszerzenia pgcrypto i tabeli:
+  - `hashed_password`
+- wprowadzanie nowego użytkownika odbywa się za pomocą:
+  `INSERT INTO user_table (username, hashed_password)`
+  `VALUES ('user_name', crypt('userpassword', gen_salt('bf')));`
+- W przypadku dodawania nowych użytkowników przez API hashowanie odbywa się w API i DB przechowuje już zahashowane hasło (z saltem) w tabeli hashed_password
+

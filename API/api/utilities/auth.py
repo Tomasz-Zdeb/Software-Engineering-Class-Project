@@ -1,4 +1,5 @@
 from api.models.user_note import UserNoteModel
+from api import bcrypt
 
 
 def user_has_permission(user_id, note_id):
@@ -15,6 +16,4 @@ def user_has_permission(user_id, note_id):
 
 
 def hash_password(password):
-    # TODO: Implement password hashing
-
-    return password
+    return bcrypt.generate_password_hash(password).decode('utf-8')

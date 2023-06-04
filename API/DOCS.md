@@ -88,3 +88,11 @@ zostać dodatkowo rozbudowany o tokeny odświeżąjące, które pozwalają na pr
 Nie istnieje sposób na ręczne unieważnienie wprost tokena, dlatego w aktualnej implementacji mechanizm wylogowania
 użytkownika musi polegać na usunięciu tokena z pamięci po stronie klienta (czyli stronie frontendowej). W aplikacji produkcyjnej ten mechanizm powinien być
 rozbudowany o rozwiązanie, polegające na prowadzeniu listy unieważnionych tokenów, tak by móc unieważniać tokeny również po stronie API.
+
+## Flask-CORS
+
+Flask-CORS to rozszerzenie dla Flask, które zapewnia obsługę polityki CORS (Cross-Origin Resource Sharing). CORS to mechanizm, który pozwala na wymianę zasobów pomiędzy różnymi domenami. Dzięki temu, aplikacja frontendowa może komunikować się z API. Zastosowanie biblioteki Flask-CORS znacznie ułatwia konfigurację mechanizmu CORS w API, bez konieczności ręcznego definiowania nagłówków HTTP.
+
+## Flask-Bcrypt
+
+Flask-Bcrypt to rozszerzenie dla Flask, które zapewnia funkcjonalność hashowania haseł. Hasła są hashowane przed zapisaniem do bazy danych. Przy logowaniu hash wprowadzonego hasła jest porównywany z hashem zapisanym w bazie danych. Hashowanie odbywa się za pomocą funkcji bcrypt i szyfru Blowfish.

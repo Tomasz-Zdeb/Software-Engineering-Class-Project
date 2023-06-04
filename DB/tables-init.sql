@@ -9,6 +9,7 @@ CREATE TABLE public.bin (
 --catalog
 CREATE TABLE public.catalog (
     catalog_id SERIAL PRIMARY KEY,
+    name character varying(100) NOT NULL,
     created_date timestamp without time zone NOT NULL
 );
 
@@ -47,7 +48,7 @@ CREATE TABLE public.user_note (
 CREATE TABLE public.user_table (
     user_id SERIAL PRIMARY KEY,
     name character varying(100) NOT NULL,
-    password text NOT NULL,
+    hashed_password VARCHAR(100) NOT NULL,
     email text UNIQUE,
     enabled integer DEFAULT 0,
     created_date timestamp without time zone NOT NULL
@@ -78,3 +79,6 @@ ALTER TABLE ONLY public.user_note
 
 ALTER TABLE ONLY public.user_note
     ADD CONSTRAINT user_note_fk_1 FOREIGN KEY (user_id) REFERENCES public.user_table(user_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY public.note
+    ADD CONSTRAINT note_fk FOREIGN KEY (catalog_id) REFERENCES public.catalog(catalog_id) ON UPDATE CASCADE ON DELETE CASCADE;
