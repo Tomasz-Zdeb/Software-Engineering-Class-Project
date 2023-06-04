@@ -7,6 +7,7 @@ from flask_restx import Resource, reqparse
 from api import api
 from api.models.note import NoteModel
 from api.models.user_note import UserNoteModel
+from api.models.tag import NoteTagModel, TagModel
 from api.utilities import note as note_util
 from api.utilities import user_note as user_note_util
 from api.utilities.db_utils import (check_if_catalog_exists,
@@ -85,6 +86,12 @@ class Note(Resource):
         note = note_util.get_note_by_id(note_id)
 
         note_dict = note.to_dict()
+
+        # Get the tags associated with this note
+        note_tags = NoteTagModel.query.filter_by(note_id=note.note_id).all()
+
+        # Get the TagModel for each NoteTagModel and convert to a list of dictionaries
+        note_dict["tags"] = [{"tag_id": note_tag.tag_id, "tag_name": TagModel.query.get(note_tag.tag_id).name} for note_tag in note_tags]
 
         return note_dict, 200
 
