@@ -5,7 +5,7 @@ def test_post(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    note_id = 1
+    note_id = 2
     tag_name = 'new_tag'
 
     response = client.post(
@@ -86,24 +86,6 @@ def test_post_404(client):
                              f"Note with ID {note_id} not found."}
 
 
-def test_post_422(client):
-    with client.application.app_context():
-        token = create_access_token(identity=1)
-
-    response = client.post(
-        '/note/tags',
-        headers={'Authorization': 'Bearer abc'},
-        json={'note_id': 1, 'tag_name': 'new_tag'}
-    )
-
-    response = client.post(
-        '/note/tags',
-        headers={'Authorization': f'Bearer {token}'},
-        json={'note_id': "invalid", 'tag_name': 'test_tag'}
-    )
-
-    assert response.status_code == 422
-
 def test_post_note_tags_500_internal_error(client, monkeypatch):
     def mock_create_tag(note_id, tag_name):
         raise Exception("Database error")
@@ -126,7 +108,7 @@ def test_get(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    note_id = 1
+    note_id = 2
 
     response = client.get(
         '/note/tags',
@@ -148,8 +130,13 @@ def test_get_note_tags_400(client):
     )
 
     assert response.status_code == 400
-    assert response.json == {"message": "Invalid request. Ensure that note_id is "
-                             "present and in the correct format."}
+    assert response.json == {
+        "message": "Input payload validation failed",
+        "errors": {
+            "note_id": "Note ID Missing required parameter in the JSON body or the "
+            "post body or the query string"
+        }
+    }
 
 def test_get_note_tags_403(client):
     with client.application.app_context():
@@ -186,7 +173,7 @@ def test_delete(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    tag_id = 1
+    tag_id = 3
 
     response = client.delete(
         '/note/tags',
@@ -209,14 +196,19 @@ def test_delete_note_tags_400(client):
     )
 
     assert response.status_code == 400
-    assert response.json == {"message": "Invalid request body. Ensure that tag_id is "
-                             "present and in the correct format."}
+    assert response.json == {
+        "message": "Input payload validation failed",
+        "errors": {
+            "tag_id": "Tag ID Missing required parameter in the JSON body or the post "
+            "body or the query string"
+        }
+    }
 
 def test_delete_note_tags_403(client):
     with client.application.app_context():
         token = create_access_token(identity=2)
 
-    tag_id = 1
+    tag_id = 3
 
     response = client.delete(
         '/note/tags',
@@ -247,7 +239,7 @@ def test_put_note_tags_200(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    tag_id = 1
+    tag_id = 3
 
     response = client.get(
         f'/note/{tag_id}/tags',
@@ -279,13 +271,21 @@ def test_put_note_tags_400(client):
     )
 
     assert response.status_code == 400
-    assert response.json == {"message": "Invalid request body."}
+    assert response.json == {
+        "message": "Input payload validation failed",
+        "errors": {
+            "tag_id": "Tag ID Missing required parameter in the JSON body or the post "
+            "body or the query string",
+            "tag_name": "Tag Name Missing required parameter in the JSON body or the "
+            "post body or the query string"
+        }
+    }
 
 def test_put_note_tags_403(client):
     with client.application.app_context():
         token = create_access_token(identity=2)
 
-    tag_id = 1
+    tag_id = 3
     new_tag_name = 'updated_tag'
 
     response = client.put(

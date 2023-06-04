@@ -36,18 +36,27 @@ def test_get(client):
     response = client.get(
         '/note',
         data=json.dumps(dict(
-            note_id=1,
+            note_id=2,
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
     )
     assert response.status_code == 200
-    assert response.json == {"note_id": 1, "title": "test_title",
-                             "description": "test_description",
-                             "body": "test_body",
-                             "created_date": "2021-01-01 00:00:00",
-                             "updated_date": "2021-01-01 00:00:00",
-                             'catalog_name': None}
+    assert response.json == {
+        "note_id": 2,
+        "title": "titletest2",
+        "description": "desctest2",
+        "body": "bodytest2",
+        "created_date": "2023-03-05 02:00:00",
+        "updated_date": "2023-03-05 03:00:00",
+        "tags": [
+            {
+            "tag_id": 3,
+            "tag_name": "tagtest3"
+            }
+        ],
+        "catalog_name": None
+    }
 
 
 def test_put(client):
