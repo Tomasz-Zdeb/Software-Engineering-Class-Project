@@ -91,7 +91,8 @@ class Note(Resource):
         note_tags = NoteTagModel.query.filter_by(note_id=note.note_id).all()
 
         # Get the TagModel for each NoteTagModel and convert to a list of dictionaries
-        note_dict["tags"] = [{"tag_id": note_tag.tag_id, "tag_name": TagModel.query.get(note_tag.tag_id).name} for note_tag in note_tags]
+        note_dict["tags"] = [{"tag_id": note_tag.tag_id, "tag_name": TagModel.query.get(
+            note_tag.tag_id).name} for note_tag in note_tags]
 
         return note_dict, 200
 

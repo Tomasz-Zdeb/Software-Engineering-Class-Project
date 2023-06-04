@@ -53,7 +53,7 @@ class TagService:
         try:
             new_tag = TagModel(name=tag_name)
             db.session.add(new_tag)
-            db.session.commit()  # We must commit the new tag before we can reference its ID
+            db.session.commit()
 
             new_note_tag = NoteTagModel(note_id=note_id, tag_id=new_tag.tag_id)
             db.session.add(new_note_tag)
@@ -69,4 +69,5 @@ class TagService:
 
     @staticmethod
     def get_existing_tag(note_id, tag_name):
-        return db.session.query(TagModel).join(NoteTagModel).filter(NoteTagModel.note_id == note_id, TagModel.name == tag_name).first()
+        return db.session.query(TagModel).join(NoteTagModel).filter(
+            NoteTagModel.note_id == note_id, TagModel.name == tag_name).first()
