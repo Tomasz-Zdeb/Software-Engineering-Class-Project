@@ -34,9 +34,11 @@ def test_get(client):
         token = create_access_token(identity=1)
 
     response = client.get(
-        '/note?note_id=2',
-        headers={'Authorization': f'Bearer {token}'}
+        '/note',
+        headers={'Authorization': f'Bearer {token}'},
+        query_string={'note_id': 2}
     )
+    
     assert response.status_code == 200
     assert response.json == {
         "note_id": 2,
