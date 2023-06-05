@@ -103,7 +103,7 @@ class Note(Resource):
 
     @api.expect(post_parser)
     @api.doc(description='Creates a note and its associated user_note.')
-    @api.doc(responses={404: 'User or catalog not found.',
+    @api.doc(responses={404: 'User not found.',
                         400: 'Bad request.',
                         201: 'Success.',
                         401: 'Unauthorized.',
@@ -149,7 +149,7 @@ class Note(Resource):
 
     @api.expect(put_parser)
     @api.doc(description='Updates a note.')
-    @api.doc(responses={404: 'Note or catalog not found.',
+    @api.doc(responses={404: 'Note not found.',
                         400: 'Bad request.',
                         200: 'Success.',
                         401: 'Unauthorized.',

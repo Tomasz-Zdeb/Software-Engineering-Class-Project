@@ -47,3 +47,4 @@ from api.routes import hello  # noqa
 from api.routes import note  # noqa
 from api.routes import auth  # noqa
 from api.routes import tag  # noqa
+from api.routes import notes  # noqa
