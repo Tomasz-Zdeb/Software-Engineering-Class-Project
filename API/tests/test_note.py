@@ -34,11 +34,7 @@ def test_get(client):
         token = create_access_token(identity=1)
 
     response = client.get(
-        '/note',
-        data=json.dumps(dict(
-            note_id=2,
-        )),
-        content_type='application/json',
+        '/note?note_id=2',
         headers={'Authorization': f'Bearer {token}'}
     )
     assert response.status_code == 200
