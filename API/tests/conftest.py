@@ -7,6 +7,7 @@ from api.models.catalog import CatalogModel
 from api.models.note import NoteModel
 from api.models.user import UserModel
 from api.models.user_note import UserNoteModel
+from api.models.tag import TagModel, NoteTagModel
 
 
 @pytest.fixture()
@@ -32,6 +33,10 @@ def app():
         CatalogModel(
             name="test_catalog2", created_date=datetime.datetime(2021, 1, 1, 0, 0)
         ).save()
+        TagModel(tag_name="tag1").save()
+        TagModel(tag_name="tag2").save()
+        NoteTagModel(note_id=1, tag_id=1).save()
+        NoteTagModel(note_id=1, tag_id=2).save()
 
     yield app
 

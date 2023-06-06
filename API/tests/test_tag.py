@@ -5,7 +5,7 @@ def test_post(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    note_id = 2
+    note_id = 1
     tag_name = 'new_tag'
 
     response = client.post(
@@ -107,7 +107,7 @@ def test_get(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    note_id = 2
+    note_id = 1
 
     response = client.get(
         f'/note/tags?note_id={note_id}',
@@ -171,7 +171,7 @@ def test_put(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    tag_id = 3
+    tag_id = 1
 
     response = client.get(
         f'/note/{tag_id}/tags',
@@ -214,7 +214,7 @@ def test_put_note_tags_403(client):
     with client.application.app_context():
         token = create_access_token(identity=2)
 
-    tag_id = 3
+    tag_id = 1
     new_tag_name = 'updated_tag'
 
     response = client.put(
@@ -246,7 +246,7 @@ def test_delete(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
 
-    tag_id = 3
+    tag_id = 2
 
     response = client.delete(
         f'/note/tags?tag_id={tag_id}',
@@ -280,7 +280,7 @@ def test_delete_note_tags_403(client):
     with client.application.app_context():
         token = create_access_token(identity=2)
 
-    tag_id = 3
+    tag_id = 1
 
     response = client.delete(
         f'/note/tags?tag_id={tag_id}',
