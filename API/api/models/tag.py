@@ -59,7 +59,6 @@ class TagService:
             db.session.add(new_note_tag)
             
             db.session.commit()
-            print('committed note_tag')
 
             return new_tag
         except Exception as e:

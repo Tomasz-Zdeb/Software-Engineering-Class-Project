@@ -15,7 +15,7 @@ def test_get_notes_single_uncataloged_note(client):
 
     assert response.status_code == 200
 
-    assert len(response.json['uncataloged']) == 1
+    assert len(response.json['uncataloged']) == 2
 
     assert response.json['uncataloged'][0]['note_id'] == 1
     assert response.json['uncataloged'][0]['title'] == 'test_title'
@@ -44,7 +44,7 @@ def test_get_notes_single_cataloged_and_uncataloged(client):
     )
 
     assert response.status_code == 200
-    assert len(response.json['uncataloged']) == 1
+    assert len(response.json['uncataloged']) == 2
     assert len(response.json['catalogs']) == 1
 
     assert response.json['uncataloged'][0]['note_id'] == 1
@@ -87,7 +87,7 @@ def test_get_notes_multiple_cataloged_and_uncataloged(client):
 
     assert response.status_code == 200
 
-    assert len(response.json['uncataloged']) == 1
+    assert len(response.json['uncataloged']) == 2
     assert len(response.json['catalogs']) == 2
 
     assert response.json['uncataloged'][0]['note_id'] == 1

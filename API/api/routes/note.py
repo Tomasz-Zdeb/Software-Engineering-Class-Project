@@ -198,7 +198,8 @@ class Note(Resource):
         return {"message": "Note updated."}, 200
 
     @api.expect(delete_parser)
-    @api.doc(description='Deletes a note and its associated user_note.')
+    @api.doc(description=
+             'Deletes a note and its associated user_note along with associated tags.')
     @api.doc(responses={404: 'Note not found.',
                         200: 'Success.',
                         401: 'Unauthorized.',
@@ -215,6 +216,21 @@ class Note(Resource):
 
         if not user_has_permission(user_id, note_id):
             return {"message": "Forbidden."}, 403
+        
+        note_tags = NoteTagModel.query.filter_by(note_id=note_id).all()
+        for note_tag in note_tags:
+            if user_has_permission(user_id, note_tag.note_id):
+                note_tag.delete()
+            else:
+                return {"message": "Forbidden. You don't have permissions to delete "
+                        "some of the tags associated with this note."}, 403
+            
+        for note_tag in note_tags:
+            remaining_associations = NoteTagModel.query.filter_by(
+                tag_id=note_tag.tag_id).all()
+            if not remaining_associations:
+                tag = TagModel.query.get(note_tag.tag_id)
+                tag.delete()
 
         note = note_util.get_note_by_id(note_id)
         user_note = user_note_util.get_user_note_by_note_id(note_id)

@@ -14,19 +14,18 @@ def test_post(client):
     )
 
     assert response.status_code == 201
-    assert 'tag_id' in response.json
+    assert response.json == {"message": 
+                             f"Tag '{tag_name}' has been successfully created.", 
+                             "tag_id": response.json['tag_id']}
 
     response = client.get(
-        f'/note/{note_id}/tags',
+        f'/note/tags?note_id={note_id}',
         headers={'Authorization': f'Bearer {token}'},
     )
 
     assert response.status_code == 200
     assert tag_name in [tag['tag_name'] for tag in response.json]
     assert 'tag_id' in response.json
-    assert response.json == {"message": 
-                             f"Tag '{tag_name}' has been successfully created.", 
-                             "tag_id": response.json['tag_id']}
 
 def test_post_400(client):
     with client.application.app_context():
@@ -172,13 +171,7 @@ def test_put(client):
         token = create_access_token(identity=1)
 
     tag_id = 1
-
-    response = client.get(
-        f'/note/{tag_id}/tags',
-        headers={'Authorization': f'Bearer {token}'},
-    )
-    note_id = response.json['note_id']
-
+    note_id = 1
     new_tag_name = 'updated_tag'
 
     response = client.put(
