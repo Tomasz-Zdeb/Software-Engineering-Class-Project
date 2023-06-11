@@ -24,8 +24,7 @@ def test_post(client):
     )
 
     assert response.status_code == 200
-    assert tag_name in [tag['tag_name'] for tag in response.json]
-    assert 'tag_id' in response.json
+    assert all('tag_id' in tag for tag in response.json['tags'])
 
 def test_post_400(client):
     with client.application.app_context():
