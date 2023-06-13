@@ -12,7 +12,7 @@ const LoginInputs = ({handleLogin, handleRegister, buttonText}) => {
     return (
         <form>
             <div>
-                <label>Email:</label>
+                <label>Nazwa użytkownika:</label>
                 <input
                     className="form-control"
                     type="email"
