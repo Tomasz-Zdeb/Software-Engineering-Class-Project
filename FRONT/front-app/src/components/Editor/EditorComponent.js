@@ -1,20 +1,46 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import NoteItemComponent from "../NoteItem/NoteItemComponent";
 import ToolbarComponent from "../NoteToolbar/ToolbarComponent";
+import NoteListComponent from "../NoteList/NoteListComponent";
 
-const EditorComponent = ({token}) => {
+const EditorComponent = ({token, setToken, setIsLoggedIn}) => {
     const [noteText, setNoteText] = useState('Wprowadź treść notatki');
     const [title, setTitle] = useState('');
-    const [catalogId, setCatalogId] = useState('1');
+    const [catalogId, setCatalogId] = useState('');
     const [description, setDescription] = useState('');
     const [actualNoteID, setActualNoteID] = useState(0);
+    const [noteData, setNoteData] = useState(null);
+
+    const handleLogout = () => {
+        setIsLoggedIn(false);
+        setToken('');
+        localStorage.removeItem('token');
+        window.location.reload();
+    };
+
+    const fetchData = async () => {
+        try {
+            const url = "http://localhost:5000/notes";
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });
+            const data = await response.json();
+            setNoteData(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const handleSaveNewNote = async () => {
         const url = 'http://localhost:5000/note';
         const noteData = {
             title: title,
-            catalog_id: catalogId,
+            catalog_name: catalogId,
             description: description,
             body: noteText
         };
@@ -28,6 +54,8 @@ const EditorComponent = ({token}) => {
                 },
                 body: JSON.stringify(noteData)
             });
+
+            await fetchData();
 
             if (response.status === 201) {
                 const responseData = await response.json();
@@ -59,7 +87,7 @@ const EditorComponent = ({token}) => {
         const noteData = {
             note_id: actualNoteID,
             title: title,
-            catalog_id: catalogId,
+            catalog_name: catalogId,
             description: description,
             body: noteText
         };
@@ -73,6 +101,8 @@ const EditorComponent = ({token}) => {
                 },
                 body: JSON.stringify(noteData)
             });
+
+            await fetchData();
 
             if (response.status === 201) {
                 console.log('Notatka została zapisana');
@@ -106,6 +136,8 @@ const EditorComponent = ({token}) => {
             },
         })
             .then(response => {
+                fetchData();
+
                 if (response.status === 200) {
                     alert('Notatka została usunięta.');
                     setActualNoteID(0);
@@ -127,6 +159,36 @@ const EditorComponent = ({token}) => {
     };
 
 
+    const handleNoteClick = async (note) => {
+        try {
+            const url = `http://localhost:5000/note?note_id=${note.note_id}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setActualNoteID(note.note_id);
+                setTitle(note.title);
+                setCatalogId(note.catalog_name);
+                setDescription(note.description);
+                setNoteText(data.body);
+            } else {
+                console.error('Failed to fetch note:', response.status);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <div className="app">
             <Container fluid>
@@ -134,7 +196,11 @@ const EditorComponent = ({token}) => {
                     <Col className="topbar col-12 m-1 rounded"><h1>Notatnik</h1></Col>
                 </Row>
                 <Row className="mt-3">
-                    <Col className="leftbar col-2 m-2 rounded">Eksplorator notatek</Col>
+                    {noteData ? (
+                        <NoteListComponent noteData={noteData} handleNoteClick={handleNoteClick}/>
+                    ) : (
+                        <p>Ładowanie danych...</p>
+                    )}
                     <NoteItemComponent
                         token={token}
                         noteText={noteText}
@@ -146,8 +212,12 @@ const EditorComponent = ({token}) => {
                         description={description}
                         setDescription={setDescription}
                     />
-                    <ToolbarComponent handleSave={handleSave} handleSaveNewNote={handleSaveNewNote}
-                                      handleDeleteNote={handleDeleteNote}/>
+                    <ToolbarComponent
+                        handleSave={handleSave}
+                        handleSaveNewNote={handleSaveNewNote}
+                        handleDeleteNote={handleDeleteNote}
+                        handleLogout={handleLogout}
+                    />
                 </Row>
             </Container>
         </div>

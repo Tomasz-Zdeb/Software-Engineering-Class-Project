@@ -1,5 +1,6 @@
-import React from 'react';
-import {Col} from 'react-bootstrap';
+import React, {useEffect} from 'react';
+import {Col, Form, Row} from 'react-bootstrap';
+import CKEditor from 'react-ckeditor-component';
 
 const NoteItemComponent = ({
                                noteText,
@@ -12,7 +13,7 @@ const NoteItemComponent = ({
                                setDescription
                            }) => {
     const handleNoteChange = (event) => {
-        const updatedNoteText = event.target.value;
+        const updatedNoteText = event.editor.getData();
         setNoteText(updatedNoteText);
     };
 
@@ -31,25 +32,61 @@ const NoteItemComponent = ({
         setDescription(updatedDescription);
     };
 
+    useEffect(() => {
+        // Aktualizacja zawartości CKEditor po zmianie noteText
+        const editor = CKEditor.editorInstance;
+        if (editor) {
+            editor.setData(noteText);
+        }
+    }, [noteText]);
+
+
+    const editorConfig = {
+        styles: {
+            height: '700px'
+        }
+    };
+
+
     return (
         <Col className="noteItem col-7 m-2 rounded">
-            <div>
-                <label>Tytuł:</label>
-                <input type="text" value={title} onChange={handleTitleChange}/>
-            </div>
-            <div>
-                <label>Identyfikator katalogu:</label>
-                <input type="text" value={catalogId} onChange={handleCatalogIdChange}/>
-            </div>
-            <div>
-                <label>Opis:</label>
-                <input type="text" value={description} onChange={handleDescriptionChange}/>
-            </div>
-            <textarea
-                className="note-text"
-                value={noteText}
-                onChange={handleNoteChange}
-            />
+            <Row>
+                <Col className="col-4" style={{textAlign: 'center'}}>
+                    <Row>
+                        <label>Tytuł:</label>
+                    </Row>
+                    <Row className="m-1">
+                        <Form.Control type="text" value={title} onChange={handleTitleChange}/>
+                    </Row>
+                </Col>
+                <Col className="col-4" style={{textAlign: 'center'}}>
+                    <Row>
+                        <label>Nazwa katalogu:</label>
+                    </Row>
+                    <Row className="m-1">
+                        <Form.Control type="text" value={catalogId} onChange={handleCatalogIdChange}/>
+                    </Row>
+                </Col>
+                <Col className="col-4" style={{textAlign: 'center'}}>
+                    <Row>
+                        <label>Opis:</label>
+                    </Row>
+                    <Row className="m-1">
+                        <Form.Control type="text" value={description} onChange={handleDescriptionChange}/>
+                    </Row>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="col-12 m-2 d-flex flex-column w-100">
+                    <CKEditor
+                        content={noteText}
+                        events={{
+                            change: handleNoteChange
+                        }}
+                        config={editorConfig}
+                    />
+                </Col>
+            </Row>
         </Col>
     );
 };
