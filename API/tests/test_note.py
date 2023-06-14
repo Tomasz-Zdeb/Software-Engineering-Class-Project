@@ -14,19 +14,19 @@ def test_post(client):
         headers={'Authorization': f'Bearer {token}'}
     )
     assert response.status_code == 201
-    assert response.json == {"note_id": 2}
+    assert response.json == {"note_id": 3}
 
     response = client.get(
         '/note',
         data=json.dumps(dict(
-            note_id=2,
+            note_id=3,
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
     )
 
     assert response.status_code == 200
-    assert response.json["note_id"] == 2
+    assert response.json["note_id"] == 3
 
 
 def test_get(client):
@@ -41,13 +41,27 @@ def test_get(client):
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
     )
+    
     assert response.status_code == 200
-    assert response.json == {"note_id": 1, "title": "test_title",
-                             "description": "test_description",
-                             "body": "test_body",
-                             "created_date": "2021-01-01 00:00:00",
-                             "updated_date": "2021-01-01 00:00:00",
-                             'catalog_name': None}
+    assert response.json == {
+        "note_id": 1,
+        "title": "test_title",
+        "description": "test_description",
+        "body": "test_body",
+        "created_date": "2021-01-01 00:00:00",
+        "updated_date": "2021-01-01 00:00:00",
+        "tags": [
+            {
+            "tag_id": 1,
+            "tag_name": "tag1"
+            },
+            {
+            "tag_id": 2,
+            "tag_name": "tag2"
+            },
+        ],
+        "catalog_name": None
+    }
 
 
 def test_put(client):
@@ -94,7 +108,7 @@ def test_delete(client):
     response = client.delete(
         '/note',
         data=json.dumps(dict(
-            note_id=1,
+            note_id=2,
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}
@@ -105,7 +119,7 @@ def test_delete(client):
     response = client.get(
         '/note',
         data=json.dumps(dict(
-            note_id=1,
+            note_id=2,
         )),
         content_type='application/json',
         headers={'Authorization': f'Bearer {token}'}

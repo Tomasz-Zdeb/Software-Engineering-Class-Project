@@ -59,7 +59,7 @@ def test_get_catalog_name_by_id(client, app):
 def test_get_all_notes_of_user(client, app):
     with app.app_context():
         notes = get_all_notes_of_user(1)
-        assert len(notes) == 1
+        assert len(notes) == 2
         assert notes[0].note_id == 1
         assert notes[0].title == "test_title"
         assert notes[0].description == "test_description"

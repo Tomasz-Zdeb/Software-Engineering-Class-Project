@@ -15,7 +15,7 @@ def test_get_notes_single_uncataloged_note(client):
 
     assert response.status_code == 200
 
-    assert len(response.json['uncataloged']) == 1
+    assert len(response.json['uncataloged']) == 2
 
     assert response.json['uncataloged'][0]['note_id'] == 1
     assert response.json['uncataloged'][0]['title'] == 'test_title'
@@ -32,10 +32,11 @@ def test_get_notes_single_uncataloged_note(client):
 def test_get_notes_single_cataloged_and_uncataloged(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
-        NoteModel(title="test_title2", description="test_description2",
+        note = NoteModel(title="test_title2", description="test_description2",
                   body="test_body2", created_date="2021-01-01",
-                  updated_date="2021-01-01", catalog_id=1).save()
-        UserNoteModel(user_id=1, note_id=2).save()
+                  updated_date="2021-01-01", catalog_id=1)
+        note.save()
+        UserNoteModel(user_id=1, note_id=note.note_id).save()
 
     response = client.get(
         '/notes',
@@ -44,7 +45,7 @@ def test_get_notes_single_cataloged_and_uncataloged(client):
     )
 
     assert response.status_code == 200
-    assert len(response.json['uncataloged']) == 1
+    assert len(response.json['uncataloged']) == 2
     assert len(response.json['catalogs']) == 1
 
     assert response.json['uncataloged'][0]['note_id'] == 1
@@ -70,14 +71,17 @@ def test_get_notes_single_cataloged_and_uncataloged(client):
 def test_get_notes_multiple_cataloged_and_uncataloged(client):
     with client.application.app_context():
         token = create_access_token(identity=1)
-        NoteModel(title="test_title2", description="test_description2",
+        note1 = NoteModel(title="test_title2", description="test_description2",
                   body="test_body2", created_date="2021-01-01",
-                  updated_date="2021-01-01", catalog_id=1).save()
-        UserNoteModel(user_id=1, note_id=2).save()
-        NoteModel(title="test_title3", description="test_description3",
+                  updated_date="2021-01-01", catalog_id=1)
+        note1.save()
+        UserNoteModel(user_id=1, note_id=note1.note_id).save()
+
+        note2 = NoteModel(title="test_title3", description="test_description3",
                   body="test_body3", created_date="2021-01-01",
-                  updated_date="2021-01-01", catalog_id=2).save()
-        UserNoteModel(user_id=1, note_id=3).save()
+                  updated_date="2021-01-01", catalog_id=2)
+        note2.save()
+        UserNoteModel(user_id=1, note_id=note2.note_id).save()
 
     response = client.get(
         '/notes',
@@ -87,7 +91,7 @@ def test_get_notes_multiple_cataloged_and_uncataloged(client):
 
     assert response.status_code == 200
 
-    assert len(response.json['uncataloged']) == 1
+    assert len(response.json['uncataloged']) == 2
     assert len(response.json['catalogs']) == 2
 
     assert response.json['uncataloged'][0]['note_id'] == 1
