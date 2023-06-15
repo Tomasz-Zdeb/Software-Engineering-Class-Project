@@ -96,3 +96,7 @@ Flask-CORS to rozszerzenie dla Flask, które zapewnia obsługę polityki CORS (C
 ## Flask-Bcrypt
 
 Flask-Bcrypt to rozszerzenie dla Flask, które zapewnia funkcjonalność hashowania haseł. Hasła są hashowane przed zapisaniem do bazy danych. Przy logowaniu hash wprowadzonego hasła jest porównywany z hashem zapisanym w bazie danych. Hashowanie odbywa się za pomocą funkcji bcrypt i szyfru Blowfish.
+
+## Swagger
+
+Dla API dostępna jest dokumentacja oparta o Swagger. Dokumentacja dostępna jest pod adresem `/`, dla aplikacji uruchomionej lokalnie pełny adres dokumentacji będzie miał postać `http://localhost:5000/`.
